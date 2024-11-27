@@ -19,11 +19,8 @@ export default function TextArea() {
       setMessage("@");
       newtext.replace("@", "");
     }
-    
     else {
       setShowWarning(false);
-      
-      
     }
     setText(newtext);
   };
