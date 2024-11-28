@@ -1,44 +1,40 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Warning from "./Warning";
-export default function TextArea() {
 
-  const [text, setText] = useState("");
-  const [showwarning, setShowWarning] = useState(false);
-  const [message, setMessage] =useState('');
+export default function TextArea({ text, onTextChange }) {
+  const [showWarning, setShowWarning] = useState(false);
+  const [message, setMessage] = useState("");
 
+  const handleChange = (e) => {
+    let newText = e.target.value;
 
-  const handleChange = (event) =>{
-    const newtext = event.target.value;
-    if(newtext.includes("<script>") ){
+    if (newText.includes("<script>")) {
       setShowWarning(true);
       setMessage("<script>");
-      newtext.replace("<script>", "");
-    
-    } else if(newtext.includes("@")){
+      newText = newText.replace("<script>", "");
+    } else if (newText.includes("@")) {
       setShowWarning(true);
       setMessage("@");
-      newtext.replace("@", "");
-    }
-    else {
+      newText = newText.replace("@", "");
+    } else {
+      setMessage("");
       setShowWarning(false);
     }
-    setText(newtext);
+
+    onTextChange(newText); 
   };
 
-  return( 
+  return (
     <>
-  <textarea 
-  onChange={handleChange}
-  placeholder="Enter Your Text"
-  value={text}
-  spellCheck={false}
-  rows="12" 
-  className="textarea" 
-  />
-
-  <Warning showWarning={showwarning} Message={message}/>
-  
-  </>
-);
-  
+      <textarea
+        onChange={handleChange}
+        placeholder="Enter Your Text"
+        value={text}
+        spellCheck={false}
+        rows="12"
+        className="textarea"
+      />
+      <Warning showWarning={showWarning} message={message} />
+    </>
+  );
 }
