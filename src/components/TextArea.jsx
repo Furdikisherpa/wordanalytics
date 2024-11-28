@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Warning from "./Warning";
 
-export default function TextArea({ text, onTextChange }) {
+export default function TextArea({ text, setText }) {
   const [showWarning, setShowWarning] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -21,7 +21,7 @@ export default function TextArea({ text, onTextChange }) {
       setShowWarning(false);
     }
 
-    onTextChange(newText); 
+    setText(newText); 
   };
 
   return (

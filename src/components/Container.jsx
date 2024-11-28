@@ -12,7 +12,7 @@ export default function Container() {
 
   return (
     <main className="container">
-      <TextArea text={text} onTextChange={handleTextChange} />
+      <TextArea text={text} setText={handleTextChange} />
       <Stats numberOfCharacters={text.length} />
     </main>
   );

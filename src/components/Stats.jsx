@@ -1,5 +1,4 @@
 
-
 export default function Stats({ numberOfCharacters }) {
   return (
     <section className="stats">
